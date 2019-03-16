@@ -67,7 +67,7 @@ def sample_metadata(sample):
     # Create a dictionary entry for each row of metadata information
     sample_metadata = {}
     for result in results:
-        sample_metadata["sample"] = result[0]
+        sample_metadata["sample"] = result[0]  
         sample_metadata["ETHNICITY"] = result[1]
         sample_metadata["GENDER"] = result[2]
         sample_metadata["AGE"] = result[3]
@@ -95,6 +95,22 @@ def samples(sample):
         "otu_labels": sample_data.otu_label.tolist(),
     }
     return jsonify(data)
+
+@app.route("/wfreq/<sample>")
+def washing_freq(sample):
+    sel = [
+        Samples_Metadata.WFREQ,
+    ]
+
+    results = db.session.query(*sel).filter(Samples_Metadata.sample == sample).all()
+
+    # Create a dictionary entry for each row of metadata information
+    sample_metadata = {}
+    for result in results:
+        sample_metadata["WFREQ"] = result[0]
+
+    return jsonify(sample_metadata)
+
 
 
 if __name__ == "__main__":
