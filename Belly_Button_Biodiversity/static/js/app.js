@@ -26,7 +26,7 @@ function buildGauge(sample) {
   var level = data2.WFREQ;
 
 // Trig to calc meter point
-  var degrees = 180 - level, radius = .5;
+  var degrees = 175 - level * 18.8, radius = .5;
   var radians = degrees * Math.PI / 180;
   var x = radius * Math.cos(radians);
   var y = radius * Math.sin(radians);
@@ -43,20 +43,16 @@ function buildGauge(sample) {
    x: [0], y:[0],
     marker: {size: 28, color:'850000'},
     showlegend: false,
-    name: 'speed',
+    name: 'washes',
     text: level,
     hoverinfo: 'text+name'},
-  { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
+  { values: [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 50],
   rotation: 90,
-  text: ['0-1', '1-2', '2-3', '3-4',
-            '4-5', '5-6', '6-7', '7-8', '8-9', '0'],
+  text: ['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].reverse(),
   textinfo: 'text',
   textposition:'inside',
-  marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
-                         'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
-                         'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
-                         'rgba(255, 255, 255, 0)','rgba(14, 127, 0, .5)','rgba(14, 127, 0, .5)','rgba(202, 209, 95, .5)']},
-  labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9', '0'],
+  marker: {colors:['#00131a', '#00394d', '#006080', '#0086b3', '#00bfff', '#33ccff', '#66d9ff','#99e6ff','#ccf2ff', '#e6f9ff', 'rgba(255, 255, 255, 0)']},
+  labels: ['', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',].reverse(),
   hoverinfo: 'label',
   hole: .5,
   type: 'pie',
@@ -73,8 +69,8 @@ function buildGauge(sample) {
       }
     }],
   title: 'Scrubs per week',
-  height: 1000,
-  width: 1000,
+  height: 800,
+  width: 800,
   xaxis: {zeroline:false, showticklabels:false,
              showgrid: false, range: [-1, 1]},
   yaxis: {zeroline:false, showticklabels:false,
@@ -121,6 +117,7 @@ function buildCharts(sample) {
     labels: data.otu_ids.slice(0, 10),
     values:  data.sample_values.slice(0, 10),
     hovertext: data.otu_labels.slice(0, 10),
+    colors: ('#ff6666', '#ffb366', '#ffff66', '#b3ff6', '#66ff66', '#66ffd9', '#66b3ff', '#6666ff', '#b366ff', '#ff66d9'),
     type: 'pie'
   }];
 
