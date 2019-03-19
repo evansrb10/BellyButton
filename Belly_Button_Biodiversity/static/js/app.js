@@ -98,7 +98,7 @@ function buildCharts(sample) {
     marker: {
       color: data.otu_ids,
       size: data.sample_values,
-      colorscale: "Earth"
+      colorscale: "YIGnBu"
     }
   };
 
@@ -117,7 +117,9 @@ function buildCharts(sample) {
     labels: data.otu_ids.slice(0, 10),
     values:  data.sample_values.slice(0, 10),
     hovertext: data.otu_labels.slice(0, 10),
-    colors: ('#ff6666', '#ffb366', '#ffff66', '#b3ff6', '#66ff66', '#66ffd9', '#66b3ff', '#6666ff', '#b366ff', '#ff66d9'),
+    marker: {
+      colors: ['#ff6666', '#ffb366', '#ffff66', '#b3ff6', '#66ff66', '#66ffd9', '#66b3ff', '#6666ff', '#b366ff', '#ff66d9']
+    },
     type: 'pie'
   }];
 
